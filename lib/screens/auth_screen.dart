@@ -9,22 +9,31 @@ class AuthScreen extends StatelessWidget {
     final deviceSize = MediaQuery.of(context).size;
     return Scaffold(
       resizeToAvoidBottomInset: true,
-      body: SingleChildScrollView(
-        child: Container(
-          height: deviceSize.height,
-          width: double.infinity,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Container(
-                height: deviceSize.height * 0.30,
-                width: double.infinity,
-                child: Image.asset('assets/images/dengue_zero.png'),
+      body: SafeArea(
+        child: LayoutBuilder(
+          builder: (ctx, constraints) {
+            return SingleChildScrollView(
+              child: ConstrainedBox(
+                constraints: BoxConstraints(minHeight: constraints.maxHeight),
+                child: IntrinsicHeight(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      SizedBox(
+                        height: deviceSize.height * 0.30,
+                        width: double.infinity,
+                        child: Image.asset(
+                          'assets/images/dengue_zero.png',
+                          fit: BoxFit.contain,
+                        ),
+                      ),
+                      const AuthForm(),
+                    ],
+                  ),
+                ),
               ),
-              const AuthForm(),
-            ],
-          ),
+            );
+          },
         ),
       ),
     );

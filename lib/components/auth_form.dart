@@ -90,6 +90,7 @@ class _AuthFormState extends State<AuthForm> {
 
   @override
   Widget build(BuildContext context) {
+    Auth auth = Provider.of<Auth>(context, listen: false);
     final deviceSize = MediaQuery.of(context).size;
     return Center(
       child: Card(
@@ -167,6 +168,39 @@ class _AuthFormState extends State<AuthForm> {
                   onPressed: _switchAuthMode,
                   child: Text(
                       _isLogin() ? 'Quer se registrar?' : 'Já tem uma conta?'),
+                ),
+                const SizedBox(height: 10),
+                ElevatedButton.icon(
+                  icon: const Icon(Icons.login),
+                  label: const Text('Entrar com Google'),
+                  onPressed: _isLoading
+                      ? null
+                      : () async {
+                          setState(() {
+                            _isLoading = true;
+                          });
+                          try {
+                            await auth.signInWithGoogle();
+                          } on AuthException catch (error) {
+                            _showErrorDialog(error.toString());
+                          } catch (error) {
+                            _showErrorDialog(
+                                'Erro inesperado ao fazer login com Google.');
+                          } finally {
+                            setState(() {
+                              _isLoading = false;
+                            });
+                          }
+                        },
+                  style: ElevatedButton.styleFrom(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(30),
+                    ),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 20,
+                      vertical: 10,
+                    ),
+                  ),
                 ),
               ],
             ),
