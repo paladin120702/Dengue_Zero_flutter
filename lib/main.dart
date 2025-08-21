@@ -1,8 +1,9 @@
+import 'package:dengue_zero/data/repositories/auth/auth_repository_impl.dart';
 import 'package:dengue_zero/firebase_options.dart';
-import 'package:dengue_zero/models/auth.dart';
-import 'package:dengue_zero/screens/auth_or_home.dart';
-import 'package:dengue_zero/screens/my_complaints_screen.dart';
-import 'package:dengue_zero/screens/new_complaint_screen.dart';
+import 'package:dengue_zero/ui/login/login_or_home.dart';
+import 'package:dengue_zero/ui/my_complaints/my_complaints_screen.dart';
+import 'package:dengue_zero/ui/new_complaint/new_complaint_screen.dart';
+import 'package:dengue_zero/ui/core/themes/all_themes.dart';
 import 'package:dengue_zero/utils/app_routes.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -21,100 +22,14 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(
-          create: (_) => Auth(),
+        ChangeNotifierProvider<AuthRepositoryImpl>(
+          create: (_) => AuthRepositoryImpl(),
         ),
       ],
       child: MaterialApp(
-        theme: ThemeData(
-          appBarTheme: AppBarTheme(
-            iconTheme: IconThemeData(
-              color: Colors.red.shade800,
-            ),
-          ),
-          elevatedButtonTheme: ElevatedButtonThemeData(
-            style: ElevatedButton.styleFrom(
-              minimumSize: const Size(300, 60),
-              backgroundColor: Colors.red.shade800,
-              foregroundColor: Colors.white,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10),
-              ),
-              padding: const EdgeInsets.symmetric(
-                horizontal: 32,
-                vertical: 16,
-              ),
-            ),
-          ),
-          textTheme: TextTheme(
-            headlineLarge: TextStyle(
-              color: Colors.red.shade800,
-              fontWeight: FontWeight.bold,
-              fontSize: 50,
-            ),
-            headlineMedium: const TextStyle(
-              fontWeight: FontWeight.normal,
-              fontSize: 20,
-            ),
-          ),
-          inputDecorationTheme: InputDecorationTheme(
-            //filled: true,
-            fillColor: Colors.red.shade50,
-            labelStyle: TextStyle(
-              color: Colors.red.shade800,
-              fontWeight: FontWeight.bold,
-            ),
-            floatingLabelStyle: TextStyle(
-              color: Colors.red.shade900,
-              fontWeight: FontWeight.bold,
-            ),
-            prefixIconColor: Colors.red.shade700,
-            suffixIconColor: Colors.red.shade700,
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(12),
-              borderSide: const BorderSide(
-                color: Colors.red,
-                width: 2,
-              ),
-            ),
-            enabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(12),
-              borderSide: BorderSide(
-                color: Colors.red.shade300,
-                width: 2,
-              ),
-            ),
-            focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(12),
-              borderSide: BorderSide(
-                color: Colors.red.shade900,
-                width: 2,
-              ),
-            ),
-            errorBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(12),
-              borderSide: BorderSide(
-                color: Colors.red.shade700,
-                width: 2,
-              ),
-            ),
-            focusedErrorBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(12),
-              borderSide: BorderSide(
-                color: Colors.red.shade900,
-                width: 2,
-              ),
-            ),
-            hintStyle: TextStyle(
-              color: Colors.red.shade300,
-            ),
-            helperStyle: TextStyle(
-              color: Colors.red.shade400,
-            ),
-          ),
-        ),
+        theme: AllThemes.theme,
         routes: {
-          AppRoutes.AUTH_OR_HOME: (ctx) => const AuthOrHome(),
+          AppRoutes.LOGIN_OR_HOME: (ctx) => const LoginOrHome(),
           AppRoutes.NEW_COMPLAINT_SCREEN: (ctx) => const NewComplaintScreen(),
           AppRoutes.MY_COMPLAINTS_SCREEN: (ctx) => const MyComplaintsScreen(),
         },

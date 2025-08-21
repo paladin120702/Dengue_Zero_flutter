@@ -1,8 +1,8 @@
-import 'package:dengue_zero/components/auth_form.dart';
+import 'package:dengue_zero/ui/login/widgets/login_form.dart';
 import 'package:flutter/material.dart';
 
-class AuthScreen extends StatelessWidget {
-  const AuthScreen({super.key});
+class LoginScreen extends StatelessWidget {
+  const LoginScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +27,7 @@ class AuthScreen extends StatelessWidget {
                           fit: BoxFit.contain,
                         ),
                       ),
-                      const AuthForm(),
+                      const LoginForm(),
                     ],
                   ),
                 ),

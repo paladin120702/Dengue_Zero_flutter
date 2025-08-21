@@ -1,4 +1,5 @@
-import 'package:dengue_zero/models/auth.dart';
+import 'package:dengue_zero/data/repositories/auth/auth_repository.dart';
+import 'package:dengue_zero/data/repositories/auth/auth_repository_impl.dart';
 import 'package:dengue_zero/utils/app_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -17,9 +18,10 @@ class DrawerItem extends StatelessWidget {
             leading: const Icon(Icons.exit_to_app),
             title: const Text('Sair da Conta'),
             onTap: () {
-              Provider.of<Auth>(context, listen: false).logout();
+              Provider.of<AuthRepositoryImpl>(context, listen: false).logout()
+                  as AuthRepository;
               Navigator.of(context)
-                  .pushReplacementNamed(AppRoutes.AUTH_OR_HOME);
+                  .pushReplacementNamed(AppRoutes.LOGIN_OR_HOME);
             },
           ),
         ],

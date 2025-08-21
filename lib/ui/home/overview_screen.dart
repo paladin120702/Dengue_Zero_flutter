@@ -1,4 +1,4 @@
-import 'package:dengue_zero/components/drawer_item.dart';
+import 'package:dengue_zero/ui/home/widgets/drawer_item.dart';
 import 'package:dengue_zero/utils/app_routes.dart';
 import 'package:flutter/material.dart';
 
