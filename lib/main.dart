@@ -1,6 +1,7 @@
 import 'package:dengue_zero/data/repositories/auth/auth_repository_impl.dart';
 import 'package:dengue_zero/firebase_options.dart';
 import 'package:dengue_zero/ui/login/login_or_home.dart';
+import 'package:dengue_zero/ui/login/login_view_model.dart';
 import 'package:dengue_zero/ui/my_complaints/my_complaints_screen.dart';
 import 'package:dengue_zero/ui/new_complaint/new_complaint_screen.dart';
 import 'package:dengue_zero/ui/core/themes/all_themes.dart';
@@ -24,6 +25,9 @@ class MyApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider<AuthRepositoryImpl>(
           create: (_) => AuthRepositoryImpl(),
+        ),
+        ChangeNotifierProvider(
+          create: (ctx) => LoginViewModel(ctx.read<AuthRepositoryImpl>()),
         ),
       ],
       child: MaterialApp(

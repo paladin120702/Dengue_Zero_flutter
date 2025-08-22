@@ -1,4 +1,4 @@
-import 'package:dengue_zero/ui/login/widgets/login_form.dart';
+import 'package:dengue_zero/ui/login/widgets/sign_in_google.dart';
 import 'package:flutter/material.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -8,32 +8,35 @@ class LoginScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final deviceSize = MediaQuery.of(context).size;
     return Scaffold(
+      appBar: AppBar(
+        centerTitle: true,
+        title: SizedBox(
+          height: kToolbarHeight,
+          child: Image.asset(
+            'assets/images/Z.png',
+            fit: BoxFit.contain,
+          ),
+        ),
+      ),
       resizeToAvoidBottomInset: true,
       body: SafeArea(
-        child: LayoutBuilder(
-          builder: (ctx, constraints) {
-            return SingleChildScrollView(
-              child: ConstrainedBox(
-                constraints: BoxConstraints(minHeight: constraints.maxHeight),
-                child: IntrinsicHeight(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      SizedBox(
-                        height: deviceSize.height * 0.30,
-                        width: double.infinity,
-                        child: Image.asset(
-                          'assets/images/dengue_zero.png',
-                          fit: BoxFit.contain,
-                        ),
-                      ),
-                      const LoginForm(),
-                    ],
+        child: Center(
+          child: SingleChildScrollView(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SizedBox(
+                  height: deviceSize.height * 0.50,
+                  width: double.infinity,
+                  child: Image.asset(
+                    'assets/images/dengue_zero.png',
+                    fit: BoxFit.contain,
                   ),
                 ),
-              ),
-            );
-          },
+                const SignInGoogle(),
+              ],
+            ),
+          ),
         ),
       ),
     );
