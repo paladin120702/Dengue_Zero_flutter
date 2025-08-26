@@ -1,5 +1,5 @@
 import 'package:dengue_zero/data/repositories/auth/auth_repository.dart';
-import 'package:dengue_zero/models/auth_exception.dart';
+import 'package:dengue_zero/data/exception/auth_exception.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
 
